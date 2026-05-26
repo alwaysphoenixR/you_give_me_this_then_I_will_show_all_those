@@ -5,13 +5,14 @@ bool can_we(vector<int>&nums,int k,int mid){
     int run_sum=0;
     if(nums[0]>mid)return false;
     for(int i=0;i<nums.size();i++){
-        if(nums[i]>mid)return false;
+        
         if(run_sum+nums[i]>mid){
             cnt++;
             run_sum=0;
             
         }
         run_sum+=nums[i];
+        if(run_sum>mid)return false;
     }
     cout<<cnt<<endl;
     if(cnt<=k-1)return true;
