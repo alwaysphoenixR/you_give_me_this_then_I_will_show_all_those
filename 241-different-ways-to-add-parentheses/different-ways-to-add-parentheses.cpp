@@ -46,8 +46,6 @@ vector<int> f1(string s,int start,int end){
                     }
                 }
             }
-        }else{
-
         }
     }
     return temp;
