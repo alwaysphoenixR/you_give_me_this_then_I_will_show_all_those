@@ -6,13 +6,13 @@ void dfs(vector<vector<int>>&ans,vector<int>&temp,vector<int>&nums,unordered_map
         return;
     }
     for(auto [key,val]:m1){
-        if(val==0)continue;
+        if(val!=0){
             temp.push_back(key);
             m1[key]--;
             dfs(ans,temp,nums,m1);
             temp.pop_back();
             m1[key]++;
-        
+        }
     }
 }
     vector<vector<int>> permuteUnique(vector<int>& nums) {
