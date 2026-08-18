@@ -10,33 +10,15 @@
 
 class Solution {
 public:
-bool get_ans(TreeNode* root,TreeNode* p,TreeNode* q,bool &done,TreeNode* &ans){
-    if(root==NULL)return false;
-    bool l=get_ans(root->left,p,q,done,ans);
-    bool r=get_ans(root->right,p,q,done,ans);
-    if((l && r) && !done){
-        ans=root;
-        done=true;
-        return true;
-    }
-    if(root==p && (l||r) && !done){
-        ans=p;
-        done=true;
-        return true;
-    }
-    if(root==q && (l||r) && !done){
-        ans=q;
-        done=true;
-        return true;
-    }
-    if(root==p || root==q)return true;
-    return l||r;
+TreeNode* get_ans(TreeNode* root,TreeNode* p,TreeNode* q){
+    if((root->val>p->val && root->val<q->val )|| (root->val>q->val && root->val<p->val))return root;
+    if((root==p && root->val<q->val) || (root==p && root->val>q->val))return p;
+    if((root==q && root->val<p->val) || (root==q && root->val>p->val))return q;
+    if(root->val >p->val && root->val>q->val)return get_ans(root->left,p,q);
+    else return get_ans(root->right,p,q);
 }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        TreeNode* ans=NULL;
-        bool done =false;
-        get_ans(root,p,q,done,ans);
-        return ans;
+        return get_ans(root,p,q);
         
     }
 };
