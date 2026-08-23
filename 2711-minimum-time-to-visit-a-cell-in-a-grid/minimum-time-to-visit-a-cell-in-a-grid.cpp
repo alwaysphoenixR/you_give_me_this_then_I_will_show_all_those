@@ -6,19 +6,9 @@ public:
     int N=grid.size();
     int M=grid[0].size();
   if(grid[0][0] != 0) return -1;
-
-if(N == 1 && M == 1) return 0;
-
-if(N == 1) {
-    if(grid[0][1] > 1) return -1;
-}
-else if(M == 1) {
-    if(grid[1][0] > 1) return -1;
-}
-else {
     if(grid[0][1] > 1 && grid[1][0] > 1)
-        return -1;
-}
+     return -1;
+
     // int curr_time=0;
     vector<vector<int>>dist(N,vector<int>(M,INT_MAX));
     priority_queue<
@@ -48,8 +38,9 @@ else {
                 extra = wt + 1;
             }
             else{
-                extra = grid[nx][ny];
-
+                extra = wt;
+                int diff=grid[nx][ny]-wt;
+                extra+=diff;
                 if(extra % 2 == wt % 2)
                     extra++;
             }
